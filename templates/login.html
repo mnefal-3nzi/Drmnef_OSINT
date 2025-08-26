@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>تسجيل الدخول - Drmnef OSINT</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(145deg, #0f172a, #1e293b);
+      color: white;
+      font-family: 'Courier New', monospace;
+    }
+    .banner {
+      white-space: pre;
+      direction: ltr;
+      font-size: 12px;
+      line-height: 1.2;
+      color: #38bdf8;
+      text-shadow: 0 0 4px #0ea5e9;
+    }
+  </style>
+</head>
+<body class="h-screen flex items-center justify-center">
+  <div class="w-full max-w-md bg-gray-900 p-6 rounded-xl shadow-lg animate__animated animate__fadeInDown">
+    <div class="banner mb-4 text-center animate__animated animate__pulse animate__infinite">
+                    ______                            ___                    
+                   (______)                          / __)                  
+                    _     _ ____ ____  ____  _____ _| |__                   
+                  | |   | / ___)    \|  _ \| ___ (_   __)                  
+                  | |__/ / |   | | | | | | | ____| | |                     
+                  |_____/|_|   |_|_|_|_| |_|_____) |_|                     
+                 By Drmnef OSINT
+    </div>
+    {% if error %}
+      <p class="text-red-400 mb-4 text-center animate__animated animate__shakeX">{{ error }}</p>
+    {% endif %}
+    <form method="POST" class="space-y-4">
+      <input type="text" name="username" placeholder="اسم المستخدم" class="w-full p-2 rounded bg-gray-800 border border-gray-600 focus:outline-none focus:ring focus:ring-cyan-500">
+      <input type="password" name="password" placeholder="كلمة المرور" class="w-full p-2 rounded bg-gray-800 border border-gray-600 focus:outline-none focus:ring focus:ring-cyan-500">
+      <button type="submit" class="w-full py-2 px-4 bg-cyan-600 hover:bg-cyan-700 rounded transition duration-300 shadow-md">تسجيل الدخول</button>
+    </form>
+  </div>
+</body>
+</html>

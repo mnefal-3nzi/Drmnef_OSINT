@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>تحليل سوشيال ميديا</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 text-right">
+<div class="max-w-2xl mx-auto mt-10 p-6 bg-white rounded-xl shadow">
+    <h1 class="text-2xl font-bold mb-6">📱 Drmnef OSINT - تحليل السوشيال</h1>
+    <form method="POST">
+        <input name="username" placeholder="اسم المستخدم" class="w-full p-2 border rounded mb-4">
+        <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded">🔍 تحليل</button>
+    </form>
+    {% if result %}
+    <div class="mt-6 space-y-6">
+        {% for platform, data in result.items() %}
+        <div class="p-4 border rounded bg-gray-50">
+            <h2 class="text-lg font-bold">{{ platform }}</h2>
+            {% if data.get('Error') %}
+                <p class="text-red-500">⚠️ {{ data['Error'] }}</p>
+            {% else %}
+                <ul class="text-sm space-y-1">
+                    {% for k, v in data.items() if k != "Image" %}
+                        <li><strong>{{ k }}:</strong> {{ v }}</li>
+                    {% endfor %}
+                </ul>
+                {% if data.get("Image") %}
+                    <img src="{{ data['Image'] }}" alt="Profile" class="mt-2 w-24 rounded">
+                {% endif %}
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
+</body>
+</html>

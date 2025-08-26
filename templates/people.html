@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head><meta charset="UTF-8"><title>People OSINT</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"></head>
+<body class="bg-gray-100 text-right">
+<div class="max-w-3xl mx-auto mt-10 p-6 bg-white rounded-2xl shadow-md">
+<h1 class="text-2xl font-bold mb-6">🧑‍💻 Drmnef OSINT - البحث عن الأشخاص</h1>
+<form method="POST">
+<div class="grid grid-cols-2 gap-4">
+<input name="username" placeholder="اسم المستخدم" class="p-2 border rounded">
+<input name="email" placeholder="البريد الإلكتروني" class="p-2 border rounded">
+<input name="phone" placeholder="رقم الهاتف" class="p-2 border rounded">
+<input name="name" placeholder="الاسم الكامل" class="p-2 border rounded">
+</div>
+<button type="submit" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded">ابدأ البحث</button>
+</form>
+{% if result %}
+<div class="mt-8">
+<h2 class="text-xl font-bold mb-2">📊 النتائج:</h2>
+<ul class="space-y-2 text-sm">
+{% for key, value in result.items() %}
+<li><strong>{{ key }}:</strong>
+{% if value is iterable and value is not string %}
+<ul class="list-disc ml-6 text-gray-700 text-sm">
+{% for item in value %}
+<li>{{ item }}</li>
+{% endfor %}
+</ul>
+{% else %}
+{{ value }}
+{% endif %}
+</li>
+{% endfor %}
+</ul>
+<form method="POST" action="/export">
+<input type="hidden" name="data" value="{{ result | tojson }}">
+<button class="mt-4 px-4 py-2 bg-green-500 text-white rounded">💾 حفظ النتائج</button>
+</form>
+</div>{% endif %}
+</div></body></html>
